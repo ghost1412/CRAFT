@@ -3,7 +3,6 @@ from keras.layers import *
 from keras.utils import plot_model
 from keras.optimizers import Adam
 from keras import backend as K
-from cnn import *
 from attention_layer import AttentionLayer
 from time import time
 from loaddata import load
@@ -185,7 +184,7 @@ class LayoutComposer():
 		with open('layoutTrainHistory.json', 'w') as fp:
 			json.dump(self.model.history, fp)
 
-layoutcomposer = LayoutComposer(F=3)
-layoutcomposer.fit(50,64)
-layoutcomposer.save_history()
+#layoutcomposer = LayoutComposer(F=3)
+#layoutcomposer.fit(50,64)
+#layoutcomposer.save_history()
 

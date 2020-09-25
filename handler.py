@@ -32,11 +32,7 @@ class DataGeneratorLayout(Sequence):
 			gt_video = np.load('flintstones_dataset/video_frames/'+vid+'.npy')
 			video = np.empty((128,128,3*self.F), dtype=np.float64)
 			anno = self.annotations[vid]
-			#with self.graph.as_default():
-				#get_embeddings = K.function([self.LSTM.layers[0].input], [self.LSTM.layers[4].output])
-				#embeddings = np.array(get_embeddings([np.array(np.reshape(np.array(self.lstminput[vid]), (1, 75,)))])[0])
 
-			#embeddings = np.reshape(embeddings, (75, 100))
 			entities = []
 			for obj in anno['objects']:
 				entities.append(obj)

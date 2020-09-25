@@ -23,7 +23,7 @@ for anno in annotations:
 	embeddings = np.reshape(embeddings, (75, 100))
 	gt_video = np.load('flintstones_dataset/video_frames/'+vid_name+'.npy')
 	video = np.zeros((128,128,3*F), dtype=np.uint8)	
-	entities = []
+	entities = [] 
 	for obj in anno['objects']:
 		entities.append(obj)
 	for car in anno['characters']:
@@ -38,6 +38,7 @@ for anno in annotations:
 		for i in range(3):
 			segmented[:, :, :, i] = mask * gt_video[:, :, :, i]
 		'''
+		np.savez_compressed('flintstones_dataset/layoutcomposer_in/'+entity['globalID'], Vi=video, embedding=embedding)
 		frame = 0
 		for i in range(F):
 			vidframe = gt_video[i]
@@ -50,7 +51,6 @@ for anno in annotations:
 			'''
 			bmask = np.bool_(mask[i])
 			video[bmask,i*3:(i+1)*3] = segmented[i,bmask]
-		np.savez_compressed('flintstones_dataset/layoutcomposer_in/'+entity['globalID'], Vi=video, embedding=embedding)
 		print("Done")
 		#cv2.imwrite('../img_{}.jpg'.format(count), cv2.cvtColor(segmented[0],cv2.COLOR_RGB2BGR))
 		#cv2.imwrite('../img_{}_vid.jpg'.format(count), cv2.cvtColor(video[:,:,0:3],cv2.COLOR_RGB2BGR))

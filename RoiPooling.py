@@ -1,5 +1,4 @@
-
-m keras.engine.topology import Layer
+from keras.engine.topology import Layer
 import keras.backend as K
 
 if K.backend() == 'tensorflow':
@@ -107,12 +106,12 @@ class RoiPoolingConv(Layer):
                 outputs.append(rs)
 
         final_output = K.concatenate(outputs, axis=0)
-        final_output = K.reshape(final_output, (1, self.num_rois, self.pool_size, self.pool_size, self.nb_channels))
+        #final_output = K.reshape(final_output, (1, self.num_rois, self.pool_size, self.pool_size, self.nb_channels))
 
         if self.dim_ordering == 'th':
             final_output = K.permute_dimensions(final_output, (0, 1, 4, 2, 3))
         else:
-            final_output = K.permute_dimensions(final_output, (0, 1, 2, 3, 4))
+            final_output = K.permute_dimensions(final_output, (0, 1, 2, 3))
 
         return final_output
     
@@ -121,4 +120,5 @@ class RoiPoolingConv(Layer):
         config = {'pool_size': self.pool_size,
                   'num_rois': self.num_rois}
         base_config = super(RoiPoolingConv, self).get_config()
-return dict(list(base_config.items()) + list(config.items()))
+        return dict(list(base_config.items()) + list(config.items()))
+

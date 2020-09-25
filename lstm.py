@@ -5,7 +5,7 @@ from keras_contrib.layers import CRF
 from keras.utils import plot_model
 from keras.models import load_model
 import numpy as np
-from livelossplot import PlotLossesKeras
+#from livelossplot import PlotLossesKeras
 
 BATCH_SIZE = 512  # Number of examples used in each iteration
 EPOCHS = 12  # Number of passes through entire dataset
